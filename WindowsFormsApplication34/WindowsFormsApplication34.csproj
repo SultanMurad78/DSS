@@ -6,5 +6,434 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BB9A38C2-5926-41D2-9589-44F4070001A7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DSS</RootNamespace>
+    <AssemblyName>Dental Simple Servise</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>ico.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>937C5E11E7EE14086A2B876731F2AB8E58C0E792</ManifestCertificateThumbprint>
+    <ManifestKeyFile>WindowsFormsApplication34_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <StartupObject>DSS.Program</StartupObject>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <Win32Resource>
+    </Win32Resource>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddTime.Designer.cs">
+      <DependentUpon>AddTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="dayParam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dayParam.Designer.cs">
+      <DependentUpon>dayParam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dolg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dolg.Designer.cs">
+      <DependentUpon>Dolg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KorzinaKadry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KorzinaKadry.Designer.cs">
+      <DependentUpon>KorzinaKadry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KorzinaKart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KorzinaKart.Designer.cs">
+      <DependentUpon>KorzinaKart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AddZapis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Properties\AddZapis.Designer.cs">
+      <DependentUpon>AddZapis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarCell.cs" />
+    <Compile Include="CalendarColumn.cs" />
+    <Compile Include="CalendarEditingControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DelimVremya.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DelimVremya.Designer.cs">
+      <DependentUpon>DelimVremya.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeloPers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeloPers.Designer.cs">
+      <DependentUpon>DeloPers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KartaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KartaForm.Designer.cs">
+      <DependentUpon>KartaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MoneyMoov.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MoneyMoov.Designer.cs">
+      <DependentUpon>MoneyMoov.cs</DependentUpon>
+    </Compile>
+    <Compile Include="One.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="One.Designer.cs">
+      <DependentUpon>One.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personal.Designer.cs">
+      <DependentUpon>Personal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Posesenie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Posesenie.Designer.cs">
+      <DependentUpon>Posesenie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Question.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Question.Designer.cs">
+      <DependentUpon>Question.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RaspChenAddZap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RaspChenAddZap.Designer.cs">
+      <DependentUpon>RaspChenAddZap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RaspChenge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RaspChenge.Designer.cs">
+      <DependentUpon>RaspChenge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SpravAddItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpravAddItem.Designer.cs">
+      <DependentUpon>SpravAddItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpravDS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpravDS.Designer.cs">
+      <DependentUpon>SpravDS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatDiagn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatDiagn.Designer.cs">
+      <DependentUpon>StatDiagn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatPoses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatPoses.Designer.cs">
+      <DependentUpon>StatPoses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatTreat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatTreat.Designer.cs">
+      <DependentUpon>StatTreat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZapisZur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZapisZur.Designer.cs">
+      <DependentUpon>ZapisZur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TakeMoney.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TakeMoney.Designer.cs">
+      <DependentUpon>TakeMoney.cs</DependentUpon>
+    </Compile>
+    <Compile Include="___BASA__DataSet.cs">
+      <DependentUpon>___BASA__DataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PatientsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientsForm.Designer.cs">
+      <DependentUpon>PatientsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddTime.resx">
+      <DependentUpon>AddTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dayParam.resx">
+      <DependentUpon>dayParam.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dolg.resx">
+      <DependentUpon>Dolg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KorzinaKadry.resx">
+      <DependentUpon>KorzinaKadry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KorzinaKart.resx">
+      <DependentUpon>KorzinaKart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\AddZapis.resx">
+      <DependentUpon>AddZapis.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DelimVremya.resx">
+      <DependentUpon>DelimVremya.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeloPers.resx">
+      <DependentUpon>DeloPers.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KartaForm.resx">
+      <DependentUpon>KartaForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MoneyMoov.resx">
+      <DependentUpon>MoneyMoov.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="One.resx">
+      <DependentUpon>One.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personal.resx">
+      <DependentUpon>Personal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Posesenie.resx">
+      <DependentUpon>Posesenie.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Question.resx">
+      <DependentUpon>Question.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RaspChenAddZap.resx">
+      <DependentUpon>RaspChenAddZap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RaspChenge.resx">
+      <DependentUpon>RaspChenge.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpravAddItem.resx">
+      <DependentUpon>SpravAddItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpravDS.resx">
+      <DependentUpon>SpravDS.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatDiagn.resx">
+      <DependentUpon>StatDiagn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatPoses.resx">
+      <DependentUpon>StatPoses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatTreat.resx">
+      <DependentUpon>StatTreat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZapisZur.resx">
+      <DependentUpon>ZapisZur.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientsForm.resx">
+      <DependentUpon>PatientsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TakeMoney.resx">
+      <DependentUpon>TakeMoney.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="___BASA__DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>___BASA__DataSet.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>Профиль клиента .NET Framework</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Установщик Windows 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="!!BASA.v.0.2.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="ress.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ico.ico" />
+    <None Include="license.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="app.config" />
+    <None Include="___BASA__DataSet.xsc">
+      <DependentUpon>___BASA__DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="___BASA__DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>___BASA__DataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="___BASA__DataSet.xss">
+      <DependentUpon>___BASA__DataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>
