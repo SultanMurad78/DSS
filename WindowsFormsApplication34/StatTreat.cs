@@ -1,0 +1,667 @@
+﻿/*
+* Copyright (c) 2010, Демченко Сергей Сергеевич, doctor.dss@mail.ru
+*
+* Разрешается повторное распространение и использование как в виде исходного
+* кода, так и в двоичной форме, с изменениями или без, при соблюдении
+* следующих условий:
+*
+*     * При повторном распространении исходного кода должно оставаться
+*       указанное выше уведомление об авторском праве, этот список условий и
+*       последующий отказ от гарантий.
+*     * При повторном распространении двоичного кода должна сохраняться
+*       указанная выше информация об авторском праве, этот список условий и
+*       последующий отказ от гарантий в документации и/или в других
+*       материалах, поставляемых при распространении.
+*
+* ЭТА ПРОГРАММА ПРЕДОСТАВЛЕНА ВЛАДЕЛЬЦАМИ АВТОРСКИХ ПРАВ И/ИЛИ ДРУГИМИ
+* СТОРОНАМИ "КАК ОНА ЕСТЬ" БЕЗ КАКОГО-ЛИБО ВИДА ГАРАНТИЙ, ВЫРАЖЕННЫХ ЯВНО
+* ИЛИ ПОДРАЗУМЕВАЕМЫХ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ ИМИ, ПОДРАЗУМЕВАЕМЫЕ
+* ГАРАНТИИ КОММЕРЧЕСКОЙ ЦЕННОСТИ И ПРИГОДНОСТИ ДЛЯ КОНКРЕТНОЙ ЦЕЛИ. НИ В
+* КОЕМ СЛУЧАЕ, ЕСЛИ НЕ ТРЕБУЕТСЯ СООТВЕТСТВУЮЩИМ ЗАКОНОМ, ИЛИ НЕ УСТАНОВЛЕНО
+* В УСТНОЙ ФОРМЕ, НИ ОДИН ВЛАДЕЛЕЦ АВТОРСКИХ ПРАВ И НИ ОДНО  ДРУГОЕ ЛИЦО,
+* КОТОРОЕ МОЖЕТ ИЗМЕНЯТЬ И/ИЛИ ПОВТОРНО РАСПРОСТРАНЯТЬ ПРОГРАММУ, КАК БЫЛО
+* СКАЗАНО ВЫШЕ, НЕ НЕСЁТ ОТВЕТСТВЕННОСТИ, ВКЛЮЧАЯ ЛЮБЫЕ ОБЩИЕ, СЛУЧАЙНЫЕ,
+* СПЕЦИАЛЬНЫЕ ИЛИ ПОСЛЕДОВАВШИЕ УБЫТКИ, ВСЛЕДСТВИЕ ИСПОЛЬЗОВАНИЯ ИЛИ
+* НЕВОЗМОЖНОСТИ ИСПОЛЬЗОВАНИЯ ПРОГРАММЫ (ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ
+* ПОТЕРЕЙ ДАННЫХ, ИЛИ ДАННЫМИ, СТАВШИМИ НЕПРАВИЛЬНЫМИ, ИЛИ ПОТЕРЯМИ
+* ПРИНЕСЕННЫМИ ИЗ-ЗА ВАС ИЛИ ТРЕТЬИХ ЛИЦ, ИЛИ ОТКАЗОМ ПРОГРАММЫ РАБОТАТЬ
+* СОВМЕСТНО С ДРУГИМИ ПРОГРАММАМИ), ДАЖЕ ЕСЛИ ТАКОЙ ВЛАДЕЛЕЦ ИЛИ ДРУГОЕ
+* ЛИЦО БЫЛИ ИЗВЕЩЕНЫ О ВОЗМОЖНОСТИ ТАКИХ УБЫТКОВ.
+*/
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace DSS
+{
+    public partial class StatTreat : Form
+    {
+        public StatTreat()
+        {
+            InitializeComponent();
+        }
+
+        string[] CheckTR = new string[0];
+        string[] CheckDrs = new string[0];
+        string[] trs = new string[0];
+        string[] drs = new string[0];
+        string[] pts = new string[0];
+        string[] CheckPts = new string[0];
+        string fil_time1 = "";
+        string fil_time2 = "";
+        string select = "";
+        string group = "";
+        string fil_doc = "";
+        string fil_pat = "";
+        string fil_tr = "";
+
+
+
+        private void StatTreat_Load(object sender, EventArgs e)
+        {
+            this.statTreatTableAdapter.Fill(this.___BASA__DataSet.StatTreat);
+            trsMake();
+        }
+
+
+        void Fill2(___BASA__DataSet.StatTreatDataTable dataTable)
+        {
+            statTreatTableAdapter.Adapter.SelectCommand = new System.Data.OleDb.OleDbCommand();
+
+            statTreatTableAdapter.Adapter.SelectCommand.Connection = new System.Data.OleDb.OleDbConnection(DSS.Properties.Settings.Default.__BASA__ConnectionString1);
+            statTreatTableAdapter.Adapter.SelectCommand.CommandType = System.Data.CommandType.Text;
+
+            statTreatTableAdapter.Adapter.SelectCommand.CommandText = "SELECT Treat.Texts AS TR, COUNT(TreatTreat.Skolko) AS Many,SUM(Treat.[Money] * TreatTreat.Skolko) AS Suma " + select +
+     " FROM         ((Treat RIGHT OUTER JOIN TreatTreat ON Treat.ID = TreatTreat.Treat) LEFT OUTER JOIN  ((Patients RIGHT OUTER JOIN Posesenie ON Patients.PID = Posesenie.Patient) LEFT OUTER JOIN  Personal ON Posesenie.Personal = Personal.DID) ON TreatTreat.Posesenie = Posesenie.ID) " +
+     " GROUP BY Treat.Texts " + group
+                                      ;
+
+
+            dataTable.Clear();
+
+            statTreatTableAdapter.Adapter.Fill(dataTable);
+        }
+
+
+        private void toolStripButtonBUILD_Click(object sender, EventArgs e)
+        {
+            toolStripButtonBUILD.BackColor = Color.LightBlue;
+            select = "";
+            group = "";
+
+            if (toolStripButtonDATA.Checked)
+            {
+                tableLayoutPanelData.Visible = true;
+                Datas.Visible = true;
+                select = " , datevalue(Posesenie.Data) AS Datas ";
+                group = " , datevalue(Posesenie.Data) ";
+            }
+            else
+            {
+                Datas.Visible = false;
+                tableLayoutPanelData.Visible = false;
+                fil_time1 = "";
+                fil_time2 = "";
+
+            }
+            if (toolStripButtonDOC.Checked)
+            {
+                DataTable tab = statTreatTableAdapter.GetDataByDrs();
+                drs = new string[tab.Rows.Count];
+                int i = 0;
+                foreach (DataRow dr in tab.Rows)
+                {
+                    drs[i] = dr["DFIO"].ToString();
+                    i++;
+                }
+
+                DFIO.Visible = toolStripButtonFiltrDOC.Visible = true;
+                select += " , Personal.DF + ' ' + Personal.DI + ' ' + Personal.DO AS DFIO ";
+                group += " , Personal.DF + ' ' + Personal.DI + ' ' + Personal.DO ";
+            }
+            else
+            {
+                toolStripButtonFiltrDOC.Visible = DFIO.Visible = false;
+                CheckDrs = new string[0]; drs = new string[0]; fil_doc = "";
+            }
+
+
+            if (toolStripButtonPAT.Checked)
+            {
+                DataTable tab = statTreatTableAdapter.GetDataByPAT();
+                pts = new string[tab.Rows.Count];
+                int i = 0;
+                foreach (DataRow dr in tab.Rows)
+                {
+                    pts[i] = dr["PFIO"].ToString();
+                    i++;
+                }
+                toolStripButtonFiltrPAT.Visible = PFIO.Visible = true;
+                select += " , Patients.PF + ' ' + Patients.PI + ' ' + Patients.PO AS PFIO ";
+                group += " , Patients.PF + ' ' + Patients.PI + ' ' + Patients.PO ";
+            }
+            else
+            {
+                toolStripButtonFiltrPAT.Visible = PFIO.Visible = false;
+                pts = new string[0];
+                fil_pat = "";
+                CheckPts = new string[0];
+            }
+
+            trsMake();
+
+            Fill2(this.___BASA__DataSet.StatTreat);
+            foreach (DataColumn dc in ___BASA__DataSet.StatTreat.Columns)
+            {
+                if (dc.ColumnName == "PFIO")
+                {
+                    PFIO.DataPropertyName = dc.ColumnName;
+                }
+                else if (dc.ColumnName == "DFIO")
+                {
+                    DFIO.DataPropertyName = dc.ColumnName;
+                }
+                else if (dc.ColumnName == "Datas")
+                {
+                    Datas.DataPropertyName = dc.ColumnName;
+                }
+                else if (dc.ColumnName == "TR")
+                {
+                    Texts.DataPropertyName = dc.ColumnName;
+                }
+
+            }
+            statDiagnosisDataGridView.Focus();
+            FILTR();
+        }
+
+        private void trsMake()
+        {
+            ___BASA__DataSet.StatTreatDataTable tabTR = statTreatTableAdapter.GetDataByTR();
+            trs = new string[tabTR.Rows.Count];
+            int ii = 0;
+            foreach (DataRow dr in tabTR.Rows)
+            {
+                trs[ii] = dr["TR"].ToString();
+                ii++;
+            }
+        }
+
+        private void FILTR()
+        {
+            string fullFiltr = "";
+            fullFiltr += fil_time1 + fil_time2;
+            if (fullFiltr != "" && fil_doc != "")
+            {
+                fullFiltr += " AND " + fil_doc;
+            }
+            else if (fullFiltr == "" && fil_doc != "")
+            {
+                fullFiltr += fil_doc;
+            }
+            if (fullFiltr != "" && fil_pat != "")
+            {
+                fullFiltr += " AND " + fil_pat;
+            }
+            else if (fullFiltr == "" && fil_pat != "")
+            {
+                fullFiltr += fil_pat;
+            }
+            if (fullFiltr != "" && fil_tr != "")
+            {
+                fullFiltr += " AND " + fil_tr;
+            }
+            else if (fullFiltr == "" && fil_tr != "")
+            {
+                fullFiltr += fil_tr;
+            }
+
+            statTreatBindingSource.Filter = fullFiltr;
+        }
+
+        private void statTreatBindingSource_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            labelSUM.Text = ((DataView)statTreatBindingSource.List).ToTable().Compute("SUM(Suma)", "").ToString();
+            labelMany.Text = ((DataView)statTreatBindingSource.List).ToTable().Compute("SUM(Many)", "").ToString();
+        }
+
+        void list_KeyDownTR(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                statDiagnosisDataGridView.Focus();
+            }
+        }
+
+        void list_LostFocusTR(object sender, EventArgs e)
+        {
+            TRclosing(sender);
+        }
+
+        void list_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (e.Index == 0)
+            {
+                if (e.CurrentValue == CheckState.Checked)
+                {
+                    int count = ((CheckedListBox)sender).Items.Count;
+                    for (int i = 1; i < count; i++)
+                    {
+                        ((CheckedListBox)sender).SetItemCheckState(i, CheckState.Unchecked);
+                    }
+                }
+                else if (e.CurrentValue == CheckState.Unchecked)
+                {
+                    int count = ((CheckedListBox)sender).Items.Count;
+                    for (int i = 1; i < count; i++)
+                    {
+                        ((CheckedListBox)sender).SetItemCheckState(i, CheckState.Checked);
+                    }
+                }
+            }
+        }
+
+        void list_KeyDownPAT(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                statDiagnosisDataGridView.Focus();
+            }
+        }
+
+        void list_LostFocusPAT(object sender, EventArgs e)
+        {
+            PATclosing(sender);
+        }
+
+        void list_KeyDownDOC(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                statDiagnosisDataGridView.Focus();
+            }
+        }
+
+
+        void list_DisposedDOC(object sender, EventArgs e)
+        {
+            DOCclosing(sender); ;
+        }
+
+        private void DOCclosing(object sender)
+        {
+            int leng = ((CheckedListBox)sender).CheckedItems.Count;
+            CheckDrs = new string[leng];
+            int i = 0;
+            fil_doc = "";
+            foreach (object it in ((CheckedListBox)sender).CheckedItems)
+            {
+                CheckDrs[i] = it.ToString();
+                if (i == 0)
+                {
+                    fil_doc = " (DFIO='" + it.ToString() + "'";
+                }
+                else
+                {
+                    fil_doc += " OR DFIO='" + it.ToString() + "'";
+                }
+                if (i == leng - 1)
+                {
+                    fil_doc += ")";
+                }
+                i++;
+            }
+            FILTR();
+            toolStripButtonFiltrDOC.Tag = null;
+            ((CheckedListBox)sender).Dispose();
+        }
+
+        private void PATclosing(object sender)
+        {
+            int leng = ((CheckedListBox)sender).CheckedItems.Count;
+            CheckPts = new string[leng];
+            int i = 0;
+            fil_pat = "";
+            foreach (object it in ((CheckedListBox)sender).CheckedItems)
+            {
+                CheckPts[i] = it.ToString();
+                if (i == 0)
+                {
+                    fil_pat = " (PFIO='" + it.ToString() + "'";
+                }
+                else
+                {
+                    fil_pat += " OR PFIO='" + it.ToString() + "'";
+                }
+                if (i == leng - 1)
+                {
+                    fil_pat += ")";
+                }
+                i++;
+
+            }
+            ((CheckedListBox)sender).Dispose();
+            toolStripButtonFiltrPAT.Tag = null;
+            FILTR();
+
+        }
+
+
+        private void TRclosing(object sender)
+        {
+            int leng = ((CheckedListBox)sender).CheckedItems.Count;
+            CheckTR = new string[leng];
+            int i = 0;
+            fil_tr = "";
+            foreach (object it in ((CheckedListBox)sender).CheckedItems)
+            {
+                CheckTR[i] = it.ToString();
+                if (i == 0)
+                {
+                    fil_tr = " (TR='" + it.ToString() + "'";
+                }
+                else
+                {
+                    fil_tr += " OR TR='" + it.ToString() + "'";
+                }
+                if (i == leng - 1)
+                {
+                    fil_tr += ")";
+                }
+                i++;
+
+            }
+            ((CheckedListBox)sender).Dispose();
+            toolStripButtonFiltrTR.Tag = null;
+            FILTR();
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            fil_time1 = "Datas>='" + dateTimePicker1.Value.Date.ToString() + "' ";
+            FILTR();
+            dateTimePicker2.MinDate = dateTimePicker1.Value.Date;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            fil_time2 = " AND Datas<'" + dateTimePicker2.Value.Date.AddDays(1).ToString() + "' ";
+            FILTR();
+            dateTimePicker1.MaxDate = dateTimePicker2.Value.Date;
+        }
+
+        private void toolStripButtonPERIOD_Click(object sender, EventArgs e)
+        {
+            if (!toolStripButtonPERIOD.Checked)
+            {
+                if (!toolStripLabelALL.Enabled)
+                {
+                    toolStripLabelALL.Enabled = true;
+                    toolStripLabelALL.Text = "Всегда";
+                }
+
+                toolStripButtonPERIOD.Checked = true;
+                toolStripButtonTOD.Checked = toolStripButtonMONTH.Checked = false;
+            }
+        }
+
+        private void toolStripButtonPERIOD_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!toolStripButtonPERIOD.Checked)
+            {
+                dateTimePicker1.Enabled = dateTimePicker2.Enabled = false;
+            }
+            else
+            {
+                dateTimePicker1.Enabled = dateTimePicker2.Enabled = true;
+            }
+        }
+
+        private void toolStripButtonMONTH_Click(object sender, EventArgs e)
+        {
+            if (!toolStripButtonMONTH.Checked)
+            {
+                if (!toolStripLabelALL.Enabled)
+                {
+                    toolStripLabelALL.Enabled = true;
+                    toolStripLabelALL.Text = "Всегда";
+                }
+                toolStripButtonMONTH.Checked = true;
+                toolStripButtonTOD.Checked = toolStripButtonPERIOD.Checked = false;
+                fil_time2 = " AND Datas<'" + DateTime.Today.Date.AddDays(-DateTime.Today.Date.Day + 1).AddMonths(1) + "' ";
+                fil_time1 = "Datas>='" + DateTime.Today.Date.AddDays(-DateTime.Today.Date.Day + 1) + "' ";
+                FILTR();
+            }
+        }
+
+        private void toolStripButtonTOD_Click(object sender, EventArgs e)
+        {
+            if (!toolStripButtonTOD.Checked)
+            {
+                if (!toolStripLabelALL.Enabled)
+                {
+                    toolStripLabelALL.Enabled = true;
+                    toolStripLabelALL.Text = "Всегда";
+                }
+                toolStripButtonTOD.Checked = true;
+                toolStripButtonMONTH.Checked = toolStripButtonPERIOD.Checked = false;
+                fil_time2 = " AND Datas<'" + DateTime.Today.Date.AddDays(1) + "' ";
+                fil_time1 = "Datas>='" + DateTime.Today.Date + "' ";
+                FILTR();
+            }
+        }
+
+        private void toolStripLabelALL_Click(object sender, EventArgs e)
+        {
+            if (toolStripLabelALL.Enabled)
+            {
+                toolStripButtonPERIOD.Checked = toolStripButtonMONTH.Checked = toolStripButtonTOD.Checked = false;
+                fil_time1 = "  Datas>'" + DateTime.MinValue + "' ";
+                fil_time2 = " AND Datas<'" + DateTime.MaxValue + "' ";
+                FILTR();
+                toolStripLabelALL.Text = "Даты";
+                toolStripLabelALL.Enabled = false;
+            }
+        }
+
+        private void toolStripButtonDATA_Click(object sender, EventArgs e)
+        {
+            toolStripButtonBUILD.BackColor = Color.Azure;// SystemColors.InactiveCaption;
+        }
+
+
+        private void statDiagnosisDataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex == -1 && e.Button == MouseButtons.Right)
+            {
+                if (statDiagnosisDataGridView.Columns[e.ColumnIndex] == PFIO || statDiagnosisDataGridView.Columns[e.ColumnIndex] == DFIO ||
+                    statDiagnosisDataGridView.Columns[e.ColumnIndex] == Texts)
+                {
+                    int x = e.Location.X + statDiagnosisDataGridView.Location.X + statDiagnosisDataGridView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true).Location.X;
+                    int y = e.Location.Y + statDiagnosisDataGridView.Location.Y + statDiagnosisDataGridView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true).Location.Y;
+                    CheckedListBox list = listParam(ref x, y);
+
+                    if (statDiagnosisDataGridView.Columns[e.ColumnIndex] == DFIO)
+                    {
+                        list.Leave += new EventHandler(list_DisposedDOC);
+                        list.KeyDown += new KeyEventHandler(list_KeyDownDOC);
+                        list.GotFocus += new EventHandler(list_GotFocusDOC);
+                    }
+
+                    else if (statDiagnosisDataGridView.Columns[e.ColumnIndex] == PFIO)
+                    {
+                        list.Leave += new EventHandler(list_LostFocusPAT);
+                        list.KeyDown += new KeyEventHandler(list_KeyDownPAT);
+                        list.GotFocus += new EventHandler(list_GotFocusPAT);
+                    }
+                    else if (statDiagnosisDataGridView.Columns[e.ColumnIndex] == Texts)
+                    {
+                        list.Leave += new EventHandler(list_LostFocusTR);
+                        list.KeyDown += new KeyEventHandler(list_KeyDownTR);
+                        list.GotFocus += new EventHandler(list_GotFocusTR);
+                    }
+                    this.Controls.Add(list);
+                    list.BringToFront();
+                    list.Focus();
+                }
+            }
+        }
+
+        void list_GotFocusPAT(object sender, EventArgs e)
+        {
+            foreach (string s in pts)
+            {
+                bool b = false;
+                foreach (string sf in CheckPts)
+                {
+                    if (s == sf)
+                    {
+                        ((CheckedListBox)sender).Items.Add(s, true);
+                        b = true;
+                        break;
+                    }
+                }
+                if (!b)
+                {
+                    ((CheckedListBox)sender).Items.Add(s, false);
+                }
+            }
+        }
+
+
+        private void toolStripButtonFiltrTR_Click(object sender, EventArgs e)
+        {
+            if (toolStripButtonFiltrTR.Tag == null)
+            {
+                int x = toolStripFILTR.Location.X + toolStripButtonFiltrTR.Bounds.Location.X;
+                int y = toolStripFILTR.Location.Y + toolStripButtonFiltrTR.Bounds.Location.Y + toolStripButtonFiltrTR.Height;
+
+                CheckedListBox list = listParam(ref x, y);
+                toolStripButtonFiltrTR.Tag = list;
+                list.Leave += new EventHandler(list_LostFocusTR);
+                list.KeyDown += new KeyEventHandler(list_KeyDownTR);
+                list.GotFocus += new EventHandler(list_GotFocusTR);
+
+                this.Controls.Add(list);
+                list.BringToFront();
+                list.Focus();
+            }
+            else
+            {
+                statDiagnosisDataGridView.Focus();
+            }
+        }
+
+        void list_GotFocusTR(object sender, EventArgs e)
+        {
+            foreach (string s in trs)
+            {
+                bool b = false;
+                foreach (string sf in CheckTR)
+                {
+                    if (s == sf)
+                    {
+                        ((CheckedListBox)sender).Items.Add(s, true);
+                        b = true;
+                        break;
+                    }
+                }
+                if (!b)
+                {
+                    ((CheckedListBox)sender).Items.Add(s, false);
+                }
+            }
+        }
+
+        private void toolStripButtonFiltrDOC_Click(object sender, EventArgs e)
+        {
+            if (toolStripButtonFiltrDOC.Tag == null)
+            {
+                int x = toolStripFILTR.Location.X + toolStripButtonFiltrDOC.Bounds.Location.X;
+                int y = toolStripFILTR.Location.Y + toolStripButtonFiltrDOC.Bounds.Location.Y + toolStripButtonFiltrDOC.Height;
+                CheckedListBox list = listParam(ref x, y);
+
+                list.Leave += new EventHandler(list_DisposedDOC);
+                list.GotFocus += new EventHandler(list_GotFocusDOC);
+                list.KeyDown += new KeyEventHandler(list_KeyDownDOC);
+
+                this.Controls.Add(list);
+                toolStripButtonFiltrDOC.Tag = list;
+                list.BringToFront();
+                list.Focus();
+            }
+            else
+            {
+
+                statDiagnosisDataGridView.Focus();
+            }
+        }
+
+        private CheckedListBox listParam(ref int x, int y)
+        {
+            CheckedListBox list = new CheckedListBox();
+            list.Size = new System.Drawing.Size(250, 200);
+
+            if (x + list.Width > this.Width)
+            {
+                x = this.Width - list.Width - 5;
+            }
+
+            list.Location = new Point(x, y);
+
+            list.CheckOnClick = true;
+            list.Items.Add("Все");
+            list.HorizontalScrollbar = true;
+            list.ItemCheck += new ItemCheckEventHandler(list_ItemCheck);
+            return list;
+        }
+
+        void list_GotFocusDOC(object sender, EventArgs e)
+        {
+            foreach (string s in drs)
+            {
+                bool b = false;
+                foreach (string sf in CheckDrs)
+                {
+                    if (s == sf)
+                    {
+                        ((CheckedListBox)sender).Items.Add(s, true);
+                        b = true;
+                        break;
+                    }
+                }
+                if (!b)
+                {
+                    ((CheckedListBox)sender).Items.Add(s, false);
+                }
+            }
+        }
+
+        private void toolStripButtonFiltrPAT_Click(object sender, EventArgs e)
+        {
+            if (toolStripButtonFiltrPAT.Tag == null)
+            {
+                int x = toolStripFILTR.Location.X + toolStripButtonFiltrPAT.Bounds.Location.X;
+                int y = toolStripFILTR.Location.Y + toolStripButtonFiltrPAT.Bounds.Location.Y + toolStripButtonFiltrPAT.Height;
+                CheckedListBox list = listParam(ref x, y);// new CheckedListBox();
+                toolStripButtonFiltrPAT.Tag = list;
+                list.Leave += new EventHandler(list_LostFocusPAT);
+                list.KeyDown += new KeyEventHandler(list_KeyDownPAT);
+                list.GotFocus += new EventHandler(list_GotFocusPAT);
+                this.Controls.Add(list);
+                list.BringToFront();
+                list.Focus();
+            }
+            else
+            {
+                statDiagnosisDataGridView.Focus();
+            }
+        }
+
+    }
+}

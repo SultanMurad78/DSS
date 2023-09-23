@@ -1,0 +1,41 @@
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\bin\Release\!!BASA.v.0.2.mdb
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\bin\Release\ress.dll
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\bin\Release\license.rtf
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\bin\Release\Dental Simple Servise.exe.config
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\bin\Release\Dental Simple Servise.exe.manifest
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\bin\Release\Dental Simple Servise.application
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\bin\Release\Dental Simple Servise.exe
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\bin\Release\Dental Simple Servise.pdb
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.AboutBox1.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.AddTime.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.dayParam.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.Dolg.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.KorzinaKadry.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.KorzinaKart.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.AddZapis.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.DelimVremya.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.DeloPers.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.KartaForm.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.MainForm.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.MoneyMoov.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.One.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.Personal.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.Posesenie.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.Question.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.RaspChenAddZap.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.RaspChenge.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.SpravAddItem.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.SpravDS.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.StatDiagn.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.StatPoses.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.StatTreat.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.ZapisZur.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.PatientsForm.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.Properties.Resources.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\DSS.TakeMoney.resources
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\WindowsFormsApplication34.csproj.GenerateResource.Cache
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\Dental Simple Servise.exe.manifest
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\Dental Simple Servise.application
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\Dental Simple Servise.exe
+C:\Documents and Settings\doctordss\Рабочий стол\0.0.5.1\WindowsFormsApplication34\obj\Release\Dental Simple Servise.pdb
